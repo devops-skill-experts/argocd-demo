@@ -1,0 +1,11 @@
+apiVersion: v2
+name: helm-external-secret
+version: 1.0.0
+appVersion: 1.23.0
+description: A Helm chart wrapper for External Secret
+
+dependencies:
+  - name: external-secrets
+    version: "0.8.1"
+    repository: "https://charts.external-secrets.io"
+    condition: external-secrets.enabled

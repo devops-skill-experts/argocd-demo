@@ -1,1 +1,0 @@
-# argicd-demo

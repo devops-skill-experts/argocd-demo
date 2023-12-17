@@ -1,0 +1,7 @@
+---
+argo-cd:
+  fullnameOverride: argocd
+  dex: {}
+  server:  
+    config:
+      url: https://github.com/ssss/xxxx.git

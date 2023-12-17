@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: local-cluster-secret
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: cluster
+    custom: "true"
+    environment: {{ .Values.envAlias }}
+type: Opaque
+stringData:
+  name: {{ .Values.envAlias }}
+  server: https://notused
+  config: ""

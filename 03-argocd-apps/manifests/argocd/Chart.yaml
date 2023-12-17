@@ -1,0 +1,7 @@
+apiVersion: v2
+name: helm-argocd-addons
+version: 1.0.0
+appVersion: 1.23.0
+description: A Helm chart wrapper for ArgoCD addons
+
+dependencies: []

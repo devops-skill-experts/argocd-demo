@@ -1,0 +1,16 @@
+ingress-nginx:
+  enabled: true
+
+  controller:
+    kind: DaemonSet
+    hostPort:
+      enabled: true
+    service:
+      externalTrafficPolicy: "Local" #To make real-ip works, need to restart pod
+      enabled: false
+    #  type: NodePort
+    #  nodePorts:
+    #    https: 32443
+    #    http: 32080
+    config:
+      enable-real-ip: "true"

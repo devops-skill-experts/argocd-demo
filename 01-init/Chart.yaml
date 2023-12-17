@@ -1,0 +1,11 @@
+apiVersion: v2
+name: helm-init-chart
+version: 1.0.0
+appVersion: 1.23.0
+description: A Helm chart wrapper for cluster intialization
+
+dependencies:
+  - name: argo-cd
+    version: "5.43.4"
+    repository: "https://argoproj.github.io/argo-helm"
+    condition: argo-cd.enabled

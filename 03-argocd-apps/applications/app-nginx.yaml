@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ingress-nginx
+spec:
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          custom: "true"
+  template:
+    metadata:
+      name: 'ingress-nginx-{{name}}'
+    spec:
+      project: "default"
+      source:
+        repoURL: https://github.com/devops-skill-experts/argocd-demo.git
+        targetRevision: "{{name}}" #Based on environment
+        path: '03-argocd-apps/manifests/ingress-nginx'
+        helm:
+          ignoreMissingValueFiles: true
+          valueFiles:
+            - values.yaml
+            - values-{{name}}.yaml
+      destination:
+        name: in-cluster
+        namespace: ingress-nginx
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
