@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-hello
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "hello.chalam-kitchen.com"
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: "/"
+        backend:
+          service:
+            name: hello-service
+            port:
+              number: 80

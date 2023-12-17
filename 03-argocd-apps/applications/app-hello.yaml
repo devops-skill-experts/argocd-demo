@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: hello
+spec:
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          custom: "true"
+  template:
+    metadata:
+      name: 'hello-{{name}}'
+    spec:
+      project: "default"
+      source:
+        repoURL: https://github.com/devops-skill-experts/argocd-demo.git
+        targetRevision: "{{name}}" #Based on environment
+        path: '03-argocd-apps/manifests/hello'
+      destination:
+        name: in-cluster
+        namespace: hello
+      syncPolicy:
+        automated:
+          selfHeal: false
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
